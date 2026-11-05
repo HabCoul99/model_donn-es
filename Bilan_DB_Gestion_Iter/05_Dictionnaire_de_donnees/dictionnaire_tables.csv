@@ -1,0 +1,60 @@
+﻿Table;Classe;Domaine;Rôle dans le modèle;Lignes observées;Définition des colonnes;Définition SQL à récupérer (audit §10);Observation
+types_structures;TypeStructure;Administration et organisation;Entité;8;Noms de colonnes complets;Non;—
+structures;Structure;Administration et organisation;Entité;1;Noms de colonnes complets;Non;parent_id permet une hiérarchie de structures (association réflexive).
+departements;Departement;Administration et organisation;Entité;n.c.;Noms de colonnes complets;Non;—
+postes;Poste;Administration et organisation;Entité;2;Noms de colonnes complets;Non;—
+postes_structures;PosteStructure;Administration et organisation;Entité;2;Noms de colonnes complets;Non;—
+affectations_postes;AffectationPoste;Administration et organisation;Entité;2;Noms de colonnes complets;Non;—
+personnes;Personne;Ressources humaines;Entité;198;Noms de colonnes complets;Non;—
+etudiants;Etudiant;Ressources humaines;Entité;187;Noms de colonnes complets;Non;—
+professeurs;Professeur;Ressources humaines;Entité;7;Noms de colonnes complets;Non;—
+administrateurs;Administrateur;Ressources humaines;Entité;4;Noms de colonnes complets;Non;—
+users;User;Ressources humaines;Entité;2;Partielle (colonnes à compléter);Non;"Un administrateur peut exister sans compte ; étudiants et professeurs n'ont pas de compte (RG38–RG43)."
+filieres;Filiere;Structure pédagogique;Entité;6;Noms de colonnes complets;Non;"departement_id est nullable et NULL pour toutes les lignes observées ; la relation fonctionnelle passe par departement_filiere."
+departement_filiere;DepartementFiliere;Structure pédagogique;Table de jointure;n.c.;Noms de colonnes complets;Non;Association plusieurs-à-plusieurs Département–Filière.
+classes;Classe;Structure pédagogique;Entité;27;Noms de colonnes complets;Non;—
+classe_filiere;ClasseFiliere;Structure pédagogique;Table de jointure;27;Noms de colonnes complets;Non;Association plusieurs-à-plusieurs Classe–Filière.
+niveaux_etude;NiveauEtude;Structure pédagogique;Entité;5;Partielle (colonnes à compléter);Non;Valeurs métier identifiées : L1, L2, L3, M1, M2.
+annees_universitaires;AnneeUniversitaire;Structure pédagogique;Entité;1;Partielle (colonnes à compléter);Non;Noms physiques exacts à confirmer.
+promotions;Promotion;Structure pédagogique;Entité;1;Partielle (colonnes à compléter);Non;"Table métier utilisée par les profils étudiants ; à ne pas confondre avec promotions_classes."
+promotions_classes;PromotionClasse;Structure pédagogique;Entité;26;Noms de colonnes complets;Non;Promotion annuelle = une classe pour une année universitaire (RG12, RG13).
+programmes;Programme;Programmes et inscriptions;Entité;2;Noms de colonnes complets;Non;—
+versions_programmes_pedagogiques;VersionProgrammePedagogique;Programmes et inscriptions;Entité;2;Noms de colonnes complets;Non;—
+version_programme_unites;VersionProgrammeUnite;Programmes et inscriptions;Association porteuse;2;Partielle (colonnes à compléter);Non;Association Version de programme–Unité d'enseignement.
+inscriptions_academiques;InscriptionAcademique;Programmes et inscriptions;Entité;187;Partielle (colonnes à compléter);Non;"Le champ programme_id a été retiré par migration ; l'inscription référence une version de programme (RG21)."
+regles_pedagogiques;ReglePedagogique;Programmes et inscriptions;Entité;13;Partielle (colonnes à compléter);Non;—
+semestres;Semestre;Enseignements et évaluations;Entité;11;Partielle (colonnes à compléter);Non;—
+unites_enseignement;UniteEnseignement;Enseignements et évaluations;Entité;2;Partielle (colonnes à compléter);Non;—
+ecues;Ecue;Enseignements et évaluations;Entité;4;Partielle (colonnes à compléter);Non;—
+promotion_classe_unites;PromotionClasseUnite;Enseignements et évaluations;Association porteuse;26;Noms de colonnes complets;Oui;Association Promotion annuelle–Unité d'enseignement, porteuse de « obligatoire » et « observations ».
+evaluations;Evaluation;Enseignements et évaluations;Entité;4;Partielle (colonnes à compléter);Non;—
+notes;Note;Enseignements et évaluations;Entité;4;Partielle (colonnes à compléter);Non;—
+sessions_rattrapage;SessionRattrapage;Enseignements et évaluations;Entité;0;Partielle (colonnes à compléter);Non;—
+notes_rattrapage;NoteRattrapage;Enseignements et évaluations;Entité;0;Partielle (colonnes à compléter);Non;—
+resultats_ecues;ResultatEcue;Résultats et progression;Entité;4;Partielle (colonnes à compléter);Non;—
+resultats_unites;ResultatUnite;Résultats et progression;Entité;2;Partielle (colonnes à compléter);Non;—
+resultats_semestres;ResultatSemestre;Résultats et progression;Entité;2;Partielle (colonnes à compléter);Non;—
+decisions_progression;DecisionProgression;Résultats et progression;Entité;0;Partielle (colonnes à compléter);Non;—
+eligibilites_diplomes;EligibiliteDiplome;Résultats et progression;Entité;0;Partielle (colonnes à compléter);Non;—
+derogations_academiques;DerogationAcademique;Résultats et progression;Entité;0;Partielle (colonnes à compléter);Non;—
+affectations_pedagogiques;AffectationPedagogique;Planification;Entité;2;Noms de colonnes complets;Oui;—
+emplois_du_temps;EmploiDuTemps;Planification;Entité;6;Noms de colonnes complets;Oui;—
+cours_plannifies;CoursPlannifie;Planification;Entité;0;Noms de colonnes complets;Oui;Orthographe « plannifie » conservée telle qu'en base.
+historique_cours_plannifies;HistoriqueCoursPlannifie;Planification;Entité;0;Partielle (colonnes à compléter);Oui;La suppression du cours référencé peut mettre cette référence à NULL (ON DELETE SET NULL).
+salles;Salle;Planification;Entité;4;Noms de colonnes complets;Oui;—
+evenements;Evenement;Planification;Entité;2;Partielle (colonnes à compléter);Oui;Structure physique complète à récupérer.
+roles;Role;Sécurité et modules;Entité;3;Partielle (colonnes à compléter);Oui;—
+permissions;Permission;Sécurité et modules;Entité;32;Partielle (colonnes à compléter);Oui;—
+role_user;RoleUser;Sécurité et modules;Table de jointure;2;Noms de colonnes complets;Oui;—
+permission_role;PermissionRole;Sécurité et modules;Table de jointure;20;Noms de colonnes complets;Oui;—
+modules_plateforme;ModulePlateforme;Sécurité et modules;Entité;15;Partielle (colonnes à compléter);Oui;—
+structure_modules;StructureModule;Sécurité et modules;Association porteuse;0;Partielle (colonnes à compléter);Oui;Association Structure–Module de plateforme.
+cache;—;Technique Laravel;Technique;0;Hors périmètre MCD;Non;Table technique du framework.
+cache_locks;—;Technique Laravel;Technique;0;Hors périmètre MCD;Non;Table technique du framework.
+jobs;—;Technique Laravel;Technique;0;Hors périmètre MCD;Non;Table technique du framework.
+job_batches;—;Technique Laravel;Technique;0;Hors périmètre MCD;Non;Table technique du framework.
+failed_jobs;—;Technique Laravel;Technique;0;Hors périmètre MCD;Non;Table technique du framework.
+migrations;—;Technique Laravel;Technique;33;Hors périmètre MCD;Non;Table technique du framework.
+sessions;—;Technique Laravel;Technique;3;Hors périmètre MCD;Non;Table technique du framework.
+password_reset_tokens;—;Technique Laravel;Technique;0;Hors périmètre MCD;Non;Table technique du framework.
+promotions_table_and_add_promotion_to_etudiants;—;Résiduelle;Résiduelle;0;Hors périmètre MCD;Non;Vide, sans FK, sans référence applicative identifiée.

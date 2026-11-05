@@ -1,0 +1,71 @@
+﻿Association;Entité A;Cardinalité A;Entité B;Cardinalité B;Réalisation physique;Source;Remarque;Domaine
+CLASSER;TYPE_STRUCTURE;0,N;STRUCTURE;1,1;structures.type_structure_id;audit §5;—;Administration et organisation
+CONTENIR;STRUCTURE;0,N;STRUCTURE;0,1;structures.parent_id;audit §5;Association réflexive (rôles : parent / enfant).;Administration et organisation
+COMPRENDRE;STRUCTURE;0,N;DEPARTEMENT;1,1;departements.structure_id;audit §5;—;Administration et organisation
+OFFRIR_POSTE;STRUCTURE;0,N;POSTE_STRUCTURE;1,1;postes_structures.structure_id;audit §5;—;Administration et organisation
+DEFINIR;POSTE;0,N;POSTE_STRUCTURE;1,1;postes_structures.poste_id;audit §5;—;Administration et organisation
+OCCUPER;POSTE_STRUCTURE;0,N;AFFECTATION_POSTE;1,1;affectations_postes.poste_structure_id;audit §5;—;Administration et organisation
+DETENIR;PERSONNE;0,N;AFFECTATION_POSTE;1,1;affectations_postes.personne_id;audit §5;—;Administration et organisation
+ETRE_ETUDIANT;PERSONNE;0,1;ETUDIANT;1,1;etudiants.personne_id;audit §7.1 / déduit des clés étrangères (§4);—;Ressources humaines
+ETRE_PROFESSEUR;PERSONNE;0,1;PROFESSEUR;1,1;professeurs.personne_id;audit §7.1 / déduit des clés étrangères (§4);—;Ressources humaines
+ETRE_ADMINISTRATEUR;PERSONNE;0,1;ADMINISTRATEUR;1,1;administrateurs.personne_id;audit §7.1 / déduit des clés étrangères (§4);—;Ressources humaines
+POSSEDER_COMPTE;ADMINISTRATEUR;0,1;USER;1,1;users.administrateur_id;audit §7.1 / RG39, RG41;—;Ressources humaines
+APPARTENIR_PROMOTION;PROMOTION;0,N;ETUDIANT;0,1;etudiants.promotion_id;déduit des clés étrangères (§4);Nullabilité de etudiants.promotion_id à confirmer.;Ressources humaines
+GERER;DEPARTEMENT;0,N;FILIERE;0,N;table departement_filiere;audit §5;Réalisée par la table departement_filiere.;Structure pédagogique
+ORGANISER;FILIERE;0,N;CLASSE;0,N;table classe_filiere;audit §5;Réalisée par la table classe_filiere.;Structure pédagogique
+CLASSER_NIVEAU;NIVEAU_ETUDE;0,N;CLASSE;1,1;classes.niveau_etude_id;audit §5;—;Structure pédagogique
+DECLINER;CLASSE;0,N;PROMOTION_CLASSE;1,1;promotions_classes.classe_id;audit §5;—;Structure pédagogique
+PLANIFIER_ANNEE;ANNEE_UNIVERSITAIRE;0,N;PROMOTION_CLASSE;1,1;promotions_classes.annee_universitaire_id;audit §5;—;Structure pédagogique
+SUIVRE_PROGRAMME;PROGRAMME;0,N;PROMOTION_CLASSE;0,1;promotions_classes.programme_id;audit §5;Facultative dans le schéma actuel (RG22).;Structure pédagogique
+PROPOSER;DEPARTEMENT;0,N;PROGRAMME;1,1;programmes.departement_id;audit §5;—;Programmes et inscriptions
+VERSIONNER;PROGRAMME;0,N;VERSION_PROGRAMME_PEDAGOGIQUE;1,1;versions_programmes_pedagogiques.programme_id;audit §5;—;Programmes et inscriptions
+DATER_VERSION;ANNEE_UNIVERSITAIRE;0,N;VERSION_PROGRAMME_PEDAGOGIQUE;1,1;versions_programmes_pedagogiques.annee_universitaire_id;audit §5;—;Programmes et inscriptions
+COMPOSER_VERSION;VERSION_PROGRAMME_PEDAGOGIQUE;0,N;UNITE_ENSEIGNEMENT;0,N;table version_programme_unites;audit §5;Association porteuse (table version_programme_unites, attributs à confirmer).;Programmes et inscriptions
+S_INSCRIRE;ETUDIANT;0,N;INSCRIPTION_ACADEMIQUE;1,1;inscriptions_academiques.etudiant_id;audit §5;—;Programmes et inscriptions
+SUIVRE_VERSION;VERSION_PROGRAMME_PEDAGOGIQUE;0,N;INSCRIPTION_ACADEMIQUE;1,1;inscriptions_academiques.version_programme_id;audit §5;—;Programmes et inscriptions
+INSCRIRE_ANNEE;ANNEE_UNIVERSITAIRE;0,N;INSCRIPTION_ACADEMIQUE;1,1;inscriptions_academiques.annee_universitaire_id;déduit des clés étrangères (§4);Nullabilité à confirmer.;Programmes et inscriptions
+INSCRIRE_NIVEAU;NIVEAU_ETUDE;0,N;INSCRIPTION_ACADEMIQUE;1,1;inscriptions_academiques.niveau_etude_id;déduit des clés étrangères (§4);Nullabilité à confirmer.;Programmes et inscriptions
+INSCRIRE_CLASSE;CLASSE;0,N;INSCRIPTION_ACADEMIQUE;1,1;inscriptions_academiques.classe_id;déduit des clés étrangères (§4);Nullabilité à confirmer.;Programmes et inscriptions
+ENCADRER_PROGRAMME;PROGRAMME;0,N;REGLE_PEDAGOGIQUE;0,1;regles_pedagogiques.programme_id;déduit des clés étrangères (§4);Nullabilité à confirmer.;Programmes et inscriptions
+ENCADRER_VERSION;VERSION_PROGRAMME_PEDAGOGIQUE;0,N;REGLE_PEDAGOGIQUE;0,1;regles_pedagogiques.version_programme_id;déduit des clés étrangères (§4);Nullabilité à confirmer.;Programmes et inscriptions
+DECOUPER;NIVEAU_ETUDE;0,N;SEMESTRE;1,1;semestres.niveau_etude_id;audit §5;—;Enseignements et évaluations
+REGROUPER;SEMESTRE;0,N;UNITE_ENSEIGNEMENT;1,1;unites_enseignement.semestre_id;audit §5;—;Enseignements et évaluations
+DETAILLER;UNITE_ENSEIGNEMENT;0,N;ECUE;0,1;ecues.unite_enseignement_id;audit §5;ECUE sans UE possible (unite_enseignement_id nullable).;Enseignements et évaluations
+PROGRAMMER_UNITE;PROMOTION_CLASSE;0,N;UNITE_ENSEIGNEMENT;0,N;table promotion_classe_unites;audit §5;Association porteuse (table promotion_classe_unites : obligatoire, observations).;Enseignements et évaluations
+EVALUER;ECUE;0,N;EVALUATION;1,1;evaluations.ecue_id;audit §5;—;Enseignements et évaluations
+PLANIFIER_EVAL;ANNEE_UNIVERSITAIRE;0,N;EVALUATION;1,1;evaluations.annee_universitaire_id;déduit des clés étrangères (§4);—;Enseignements et évaluations
+PORTER_SUR;EVALUATION;0,N;NOTE;1,1;notes.evaluation_id;audit §5;—;Enseignements et évaluations
+OBTENIR;INSCRIPTION_ACADEMIQUE;0,N;NOTE;1,1;notes.inscription_academique_id;audit §5;—;Enseignements et évaluations
+SAISIR_NOTE;ADMINISTRATEUR;0,N;NOTE;0,1;notes.saisie_par;déduit des clés étrangères (§4);Nullabilité de saisie_par à confirmer.;Enseignements et évaluations
+ORGANISER_SESSION;ANNEE_UNIVERSITAIRE;0,N;SESSION_RATTRAPAGE;1,1;sessions_rattrapage.annee_universitaire_id;déduit des clés étrangères (§4);—;Enseignements et évaluations
+RATTRAPER_SESSION;SESSION_RATTRAPAGE;0,N;NOTE_RATTRAPAGE;1,1;notes_rattrapage.session_rattrapage_id;déduit des clés étrangères (§4);—;Enseignements et évaluations
+RATTRAPER_ECUE;ECUE;0,N;NOTE_RATTRAPAGE;1,1;notes_rattrapage.ecue_id;déduit des clés étrangères (§4);—;Enseignements et évaluations
+RATTRAPER_INSCRIPTION;INSCRIPTION_ACADEMIQUE;0,N;NOTE_RATTRAPAGE;1,1;notes_rattrapage.inscription_academique_id;déduit des clés étrangères (§4);—;Enseignements et évaluations
+SAISIR_RATTRAPAGE;ADMINISTRATEUR;0,N;NOTE_RATTRAPAGE;0,1;notes_rattrapage.saisie_par;déduit des clés étrangères (§4);Nullabilité à confirmer.;Enseignements et évaluations
+RESULTER_ECUE;INSCRIPTION_ACADEMIQUE;0,N;RESULTAT_ECUE;1,1;resultats_ecues.inscription_academique_id;audit §5;—;Résultats et progression
+CONCERNER_ECUE;ECUE;0,N;RESULTAT_ECUE;1,1;resultats_ecues.ecue_id;déduit des clés étrangères (§4);—;Résultats et progression
+RESULTER_UNITE;INSCRIPTION_ACADEMIQUE;0,N;RESULTAT_UNITE;1,1;resultats_unites.inscription_academique_id;audit §5;—;Résultats et progression
+CONCERNER_UNITE;UNITE_ENSEIGNEMENT;0,N;RESULTAT_UNITE;1,1;resultats_unites.unite_enseignement_id;déduit des clés étrangères (§4);—;Résultats et progression
+RESULTER_SEMESTRE;INSCRIPTION_ACADEMIQUE;0,N;RESULTAT_SEMESTRE;1,1;resultats_semestres.inscription_academique_id;audit §5;—;Résultats et progression
+CONCERNER_SEMESTRE;SEMESTRE;0,N;RESULTAT_SEMESTRE;1,1;resultats_semestres.semestre_id;déduit des clés étrangères (§4);—;Résultats et progression
+DECIDER_SUR;INSCRIPTION_ACADEMIQUE;0,N;DECISION_PROGRESSION;1,1;decisions_progression.inscription_academique_id;audit §7.1;—;Résultats et progression
+PRONONCER;ADMINISTRATEUR;0,N;DECISION_PROGRESSION;1,1;decisions_progression.decide_par;déduit des clés étrangères (§4) / RG37;—;Résultats et progression
+EVALUER_DIPLOME;INSCRIPTION_ACADEMIQUE;0,N;ELIGIBILITE_DIPLOME;1,1;eligibilites_diplomes.inscription_academique_id;déduit des clés étrangères (§4);—;Résultats et progression
+DEROGER;INSCRIPTION_ACADEMIQUE;0,N;DEROGATION_ACADEMIQUE;1,1;derogations_academiques.inscription_academique_id;audit §7.1;—;Résultats et progression
+AUTORISER_DEROGATION;ADMINISTRATEUR;0,N;DEROGATION_ACADEMIQUE;0,1;derogations_academiques.decide_par;déduit des clés étrangères (§4);Nullabilité à confirmer.;Résultats et progression
+DEROGER_ECUE;ECUE;0,N;DEROGATION_ACADEMIQUE;0,1;derogations_academiques.ecue_id;déduit des clés étrangères (§4);Nullabilité à confirmer.;Résultats et progression
+DEROGER_UNITE;UNITE_ENSEIGNEMENT;0,N;DEROGATION_ACADEMIQUE;0,1;derogations_academiques.unite_enseignement_id;déduit des clés étrangères (§4);Nullabilité à confirmer.;Résultats et progression
+ENSEIGNER;PROFESSEUR;0,N;AFFECTATION_PEDAGOGIQUE;1,1;affectations_pedagogiques.professeur_id;audit §5;—;Planification
+AFFECTER_PROMOTION;PROMOTION_CLASSE;0,N;AFFECTATION_PEDAGOGIQUE;1,1;affectations_pedagogiques.promotion_classe_id;audit §5;—;Planification
+AFFECTER_ECUE;ECUE;0,N;AFFECTATION_PEDAGOGIQUE;1,1;affectations_pedagogiques.ecue_id;audit §5;—;Planification
+PLANIFIER_PROMOTION;PROMOTION_CLASSE;0,N;EMPLOI_DU_TEMPS;1,1;emplois_du_temps.promotion_classe_id;audit §5;—;Planification
+COUVRIR_SEMESTRE;SEMESTRE;0,N;EMPLOI_DU_TEMPS;1,1;emplois_du_temps.semestre_id;audit §5;—;Planification
+CONTENIR_COURS;EMPLOI_DU_TEMPS;0,N;COURS_PLANNIFIE;1,1;cours_plannifies.emploi_du_temps_id;audit §5;—;Planification
+ANIMER;PROFESSEUR;0,N;COURS_PLANNIFIE;1,1;cours_plannifies.professeur_id;audit §5;—;Planification
+ACCUEILLIR;SALLE;0,N;COURS_PLANNIFIE;1,1;cours_plannifies.salle_id;audit §5;—;Planification
+PORTER_ECUE;ECUE;0,N;COURS_PLANNIFIE;1,1;cours_plannifies.ecue_id;déduit des clés étrangères (§4);—;Planification
+REALISER_AFFECTATION;AFFECTATION_PEDAGOGIQUE;0,N;COURS_PLANNIFIE;0,1;cours_plannifies.affectation_pedagogique_id;déduit des clés étrangères (§4);Nullabilité à confirmer.;Planification
+HISTORISER;COURS_PLANNIFIE;0,N;HISTORIQUE_COURS_PLANNIFIE;0,1;historique_cours_plannifies.cours_plannifie_id;déduit des clés étrangères (§4) / ON DELETE SET NULL;Référence mise à NULL à la suppression du cours.;Planification
+AVOIR_ROLE;USER;0,N;ROLE;0,N;table role_user;audit §5;Réalisée par role_user.;Sécurité et modules
+ACCORDER;ROLE;0,N;PERMISSION;0,N;table permission_role;audit §5;Réalisée par permission_role.;Sécurité et modules
+ACTIVER_MODULE;STRUCTURE;0,N;MODULE_PLATEFORME;0,N;table structure_modules;audit §5;Association porteuse (table structure_modules).;Sécurité et modules

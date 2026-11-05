@@ -1,0 +1,44 @@
+﻿N°;Catégorie;Énoncé;Traduction dans le modèle
+RG01;Organisation administrative;L'application doit pouvoir gérer plusieurs départements.;Entité DEPARTEMENT (0,N) côté STRUCTURE.
+RG02;Organisation administrative;Une structure peut posséder des sous-structures.;structures.parent_id → structures.id (association réflexive CONTENIR).
+RG03;Organisation administrative;Un département est rattaché à une structure.;departements.structure_id → structures.id (1,1).
+RG04;Organisation administrative;Un poste peut être réutilisé dans plusieurs structures.;Table postes_structures (association POSTE–STRUCTURE).
+RG05;Organisation administrative;Un même poste ne doit pas être défini deux fois dans une même structure.;UNIQUE(structure_id, poste_id) sur postes_structures.
+RG06;Organisation administrative;Les affectations de postes sont associées à des dates.;affectations_postes.date_debut / date_fin.
+RG07;Organisation administrative;Une personne peut avoir plusieurs affectations successives.;PERSONNE (0,N) – AFFECTATION_POSTE (1,1).
+RG08;Structure pédagogique;Une filière peut être associée à plusieurs départements.;Table pivot departement_filiere (0,N)–(0,N).
+RG09;Structure pédagogique;Un département peut gérer plusieurs filières.;Table pivot departement_filiere (0,N)–(0,N).
+RG10;Structure pédagogique;Une classe peut être associée à plusieurs filières.;Table pivot classe_filiere (0,N)–(0,N).
+RG11;Structure pédagogique;Les classes sont permanentes.;Classe indépendante de l'année : l'année intervient via promotions_classes.
+RG12;Structure pédagogique;Une promotion annuelle représente une classe pendant une année universitaire.;Table promotions_classes (classe_id, annee_universitaire_id).
+RG13;Structure pédagogique;Une classe ne doit posséder qu'une promotion annuelle par année universitaire.;UNIQUE(classe_id, annee_universitaire_id) sur promotions_classes.
+RG14;Structure pédagogique;Les niveaux d'étude sont L1, L2, L3, M1 et M2.;Valeurs de référence de niveaux_etude (5 lignes).
+RG15;Structure pédagogique;S1 correspond au tronc commun en L1 selon la conception retenue.;Paramétrage applicatif (semestres, 11 lignes).
+RG16;Structure pédagogique;Les semestres S2 à S10 sont configurés selon le parcours.;Paramétrage applicatif (semestres liés à niveaux_etude).
+RG17;Programmes pédagogiques;Un programme appartient à un département.;programmes.departement_id → departements.id (1,1).
+RG18;Programmes pédagogiques;Un programme peut posséder plusieurs versions.;PROGRAMME (0,N) – VERSION_PROGRAMME (1,1).
+RG19;Programmes pédagogiques;Une version est associée à une année universitaire.;versions_programmes_pedagogiques.annee_universitaire_id.
+RG20;Programmes pédagogiques;Les versions permettent de conserver l'évolution des programmes pédagogiques.;UNIQUE(programme_id, annee_universitaire_id, version).
+RG21;Programmes pédagogiques;Une inscription académique référence une version de programme.;inscriptions_academiques.version_programme_id (programme_id retiré).
+RG22;Programmes pédagogiques;Une promotion annuelle peut être associée à un programme (facultatif dans le schéma actuel).;promotions_classes.programme_id nullable.
+RG23;Crédits et évaluations;Le nombre de crédits par semestre est de 30 par défaut.;Paramétrage pédagogique (regles_pedagogiques) – à confirmer.
+RG24;Crédits et évaluations;Les crédits d'un ECUE sont compris entre 1 et 6.;Contrainte applicative (validation) – à confirmer.
+RG25;Crédits et évaluations;Les crédits d'une UE correspondent à la somme des crédits de ses ECUE.;Règle de calcul applicative.
+RG26;Crédits et évaluations;Le barème de notation est de 20 par défaut.;Paramétrage pédagogique.
+RG27;Crédits et évaluations;Les moyennes peuvent être simples ou pondérées selon les paramètres pédagogiques.;Règle de calcul (coefficients des UE / ECUE).
+RG28;Crédits et évaluations;Les notes manquantes bloquent le calcul, sauf dérogation autorisée.;Lien avec derogations_academiques.
+RG29;Crédits et évaluations;Le seuil éliminatoire par défaut est de 7/20.;Attribut « seuil éliminatoire » de ECUE / paramétrage.
+RG30;Crédits et évaluations;La compensation est possible au sein d'une même UE si aucune note d'ECUE n'est inférieure au seuil éliminatoire.;Règle de calcul applicative.
+RG31;Crédits et évaluations;Une UE validée donne droit à la totalité de ses crédits.;Règle de calcul (resultats_unites).
+RG32;Progression académique;Le passage de L1 vers L2 exige 45 crédits sur 60 par défaut.;Règle de progression (decisions_progression).
+RG33;Progression académique;Le passage de L2 vers L3 exige 60 crédits.;Règle de progression (decisions_progression).
+RG34;Progression académique;Les UE non validées peuvent être conservées pour être repassées.;Résultats par UE conservés (resultats_unites).
+RG35;Progression académique;L'obtention du diplôme exige tous les crédits requis.;Table eligibilites_diplomes.
+RG36;Progression académique;M1 constitue un cycle d'admission indépendant selon les règles définies.;Règle d'admission applicative.
+RG37;Progression académique;Les décisions de progression sont enregistrées et associées à un administrateur.;decisions_progression.decide_par → administrateurs.id.
+RG38;Comptes utilisateurs;Toute personne enregistrée ne possède pas nécessairement un compte utilisateur.;users référence administrateurs, pas personnes.
+RG39;Comptes utilisateurs;Seuls certains administrateurs disposent d'un compte.;ADMINISTRATEUR (0,1) – USER (1,1).
+RG40;Comptes utilisateurs;La création d'un compte est réalisée par un administrateur autorisé.;Règle applicative (permissions).
+RG41;Comptes utilisateurs;Le compte est associé à un administrateur existant.;users.administrateur_id → administrateurs.id.
+RG42;Comptes utilisateurs;Les rôles et permissions déterminent les droits d'accès.;Tables roles, permissions, role_user, permission_role.
+RG43;Comptes utilisateurs;Les étudiants et professeurs n'utilisent pas directement la plateforme dans le périmètre actuel.;Aucune FK de users vers etudiants / professeurs.

@@ -1,0 +1,19 @@
+digraph G {
+ graph [rankdir=TB, fontname="DejaVu Sans", fontsize=18, labelloc=t, label=<<B>MCD 08 — Sécurité et modules</B>>, pad=0.3, nodesep=0.35, ranksep=0.7, splines=true, ];
+ node  [fontname="DejaVu Sans", fontsize=10, shape=plaintext];
+ edge  [fontname="DejaVu Sans", fontsize=9, arrowsize=0.7];
+  "roles" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E8E8E8"><TR><TD BGCOLOR="#555555"><FONT COLOR="white"><B>ROLE</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT"><I><FONT COLOR="#666666">… autres propriétés à confirmer</FONT></I></TD></TR></TABLE>>];
+  "permissions" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E8E8E8"><TR><TD BGCOLOR="#555555"><FONT COLOR="white"><B>PERMISSION</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT"><I><FONT COLOR="#666666">… autres propriétés à confirmer</FONT></I></TD></TR></TABLE>>];
+  "modules_plateforme" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E8E8E8"><TR><TD BGCOLOR="#555555"><FONT COLOR="white"><B>MODULE_PLATEFORME</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT"><I><FONT COLOR="#666666">… autres propriétés à confirmer</FONT></I></TD></TR></TABLE>>];
+  "structures" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", fontsize=11, label=<<B>STRUCTURE</B>>];
+  "users" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", fontsize=11, label=<<B>USER</B>>];
+  as0 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>AVOIR_ROLE</B></TD></TR></TABLE>>];
+  "users" -> as0 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as0 -> "roles" [dir=none, headlabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as1 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>ACCORDER</B></TD></TR></TABLE>>];
+  "roles" -> as1 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as1 -> "permissions" [dir=none, headlabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as2 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>ACTIVER_MODULE</B></TD></TR><HR/><TR><TD ALIGN="LEFT"><FONT POINT-SIZE="9">… (à confirmer)</FONT></TD></TR></TABLE>>];
+  "structures" -> as2 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as2 -> "modules_plateforme" [dir=none, headlabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+}

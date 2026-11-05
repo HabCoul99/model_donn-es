@@ -1,0 +1,29 @@
+digraph G {
+ graph [rankdir=LR, fontname="DejaVu Sans", fontsize=18, labelloc=t, label=<<B>MLD 06 — Résultats et progression</B>>, pad=0.3, nodesep=0.35, ranksep=0.7, splines=true, ];
+ node  [fontname="DejaVu Sans", fontsize=10, shape=plaintext];
+ edge  [fontname="DejaVu Sans", fontsize=9, arrowsize=0.7];
+  "resultats_ecues" [label=<<TABLE BORDER="1" COLOR="#1F7F76" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#D9F0EE"><TR><TD COLSPAN="2" BGCOLOR="#1F7F76"><FONT COLOR="white"><B>resultats_ecues</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="inscription_academique_id"><I>#inscription_academique_id</I></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="ecue_id"><I>#ecue_id</I></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "resultats_unites" [label=<<TABLE BORDER="1" COLOR="#1F7F76" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#D9F0EE"><TR><TD COLSPAN="2" BGCOLOR="#1F7F76"><FONT COLOR="white"><B>resultats_unites</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="inscription_academique_id"><I>#inscription_academique_id</I></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="unite_enseignement_id"><I>#unite_enseignement_id</I></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "resultats_semestres" [label=<<TABLE BORDER="1" COLOR="#1F7F76" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#D9F0EE"><TR><TD COLSPAN="2" BGCOLOR="#1F7F76"><FONT COLOR="white"><B>resultats_semestres</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="inscription_academique_id"><I>#inscription_academique_id</I></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="semestre_id"><I>#semestre_id</I></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "decisions_progression" [label=<<TABLE BORDER="1" COLOR="#1F7F76" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#D9F0EE"><TR><TD COLSPAN="2" BGCOLOR="#1F7F76"><FONT COLOR="white"><B>decisions_progression</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="inscription_academique_id"><I>#inscription_academique_id</I></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="decide_par"><I>#decide_par</I></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "eligibilites_diplomes" [label=<<TABLE BORDER="1" COLOR="#1F7F76" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#D9F0EE"><TR><TD COLSPAN="2" BGCOLOR="#1F7F76"><FONT COLOR="white"><B>eligibilites_diplomes</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="inscription_academique_id"><I>#inscription_academique_id</I></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "derogations_academiques" [label=<<TABLE BORDER="1" COLOR="#1F7F76" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#D9F0EE"><TR><TD COLSPAN="2" BGCOLOR="#1F7F76"><FONT COLOR="white"><B>derogations_academiques</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="inscription_academique_id"><I>#inscription_academique_id</I></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="decide_par"><I>#decide_par</I></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="ecue_id"><I>#ecue_id</I></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="unite_enseignement_id"><I>#unite_enseignement_id</I></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "administrateurs" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", label=<<B>administrateurs</B>>];
+  "ecues" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", label=<<B>ecues</B>>];
+  "inscriptions_academiques" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", label=<<B>inscriptions_academiques</B>>];
+  "semestres" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", label=<<B>semestres</B>>];
+  "unites_enseignement" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", label=<<B>unites_enseignement</B>>];
+  "resultats_ecues":"inscription_academique_id" -> "inscriptions_academiques" [style=solid, color="#555555"];
+  "resultats_ecues":"ecue_id" -> "ecues" [style=solid, color="#555555"];
+  "resultats_unites":"inscription_academique_id" -> "inscriptions_academiques" [style=solid, color="#555555"];
+  "resultats_unites":"unite_enseignement_id" -> "unites_enseignement" [style=solid, color="#555555"];
+  "resultats_semestres":"inscription_academique_id" -> "inscriptions_academiques" [style=solid, color="#555555"];
+  "resultats_semestres":"semestre_id" -> "semestres" [style=solid, color="#555555"];
+  "decisions_progression":"inscription_academique_id" -> "inscriptions_academiques" [style=solid, color="#555555"];
+  "decisions_progression":"decide_par" -> "administrateurs" [style=solid, color="#555555"];
+  "eligibilites_diplomes":"inscription_academique_id" -> "inscriptions_academiques" [style=solid, color="#555555"];
+  "derogations_academiques":"inscription_academique_id" -> "inscriptions_academiques" [style=solid, color="#555555"];
+  "derogations_academiques":"decide_par" -> "administrateurs" [style=dashed, color="#555555"];
+  "derogations_academiques":"ecue_id" -> "ecues" [style=dashed, color="#555555"];
+  "derogations_academiques":"unite_enseignement_id" -> "unites_enseignement" [style=dashed, color="#555555"];
+}

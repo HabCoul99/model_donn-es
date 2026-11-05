@@ -1,0 +1,26 @@
+digraph G {
+ graph [rankdir=TB, fontname="DejaVu Sans", fontsize=18, labelloc=t, label=<<B>MCD 02 — Ressources humaines</B>>, pad=0.3, nodesep=0.35, ranksep=0.7, splines=true, ];
+ node  [fontname="DejaVu Sans", fontsize=10, shape=plaintext];
+ edge  [fontname="DejaVu Sans", fontsize=9, arrowsize=0.7];
+  "personnes" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#3F7D2E" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E3F2DD"><TR><TD BGCOLOR="#3F7D2E"><FONT COLOR="white"><B>PERSONNE</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">nom</TD></TR><TR><TD ALIGN="LEFT">prenoms</TD></TR><TR><TD ALIGN="LEFT">sexe</TD></TR><TR><TD ALIGN="LEFT">date_naissance</TD></TR><TR><TD ALIGN="LEFT">lieu_naissance</TD></TR><TR><TD ALIGN="LEFT">nationalite</TD></TR><TR><TD ALIGN="LEFT">telephone</TD></TR><TR><TD ALIGN="LEFT">email</TD></TR><TR><TD ALIGN="LEFT">adresse</TD></TR><TR><TD ALIGN="LEFT">photo</TD></TR></TABLE>>];
+  "etudiants" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#3F7D2E" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E3F2DD"><TR><TD BGCOLOR="#3F7D2E"><FONT COLOR="white"><B>ETUDIANT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">matricule</TD></TR><TR><TD ALIGN="LEFT">date_premiere_inscription</TD></TR><TR><TD ALIGN="LEFT">statut</TD></TR><TR><TD ALIGN="LEFT">observations</TD></TR></TABLE>>];
+  "professeurs" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#3F7D2E" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E3F2DD"><TR><TD BGCOLOR="#3F7D2E"><FONT COLOR="white"><B>PROFESSEUR</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">matricule</TD></TR><TR><TD ALIGN="LEFT">grade</TD></TR><TR><TD ALIGN="LEFT">specialite</TD></TR><TR><TD ALIGN="LEFT">date_recrutement</TD></TR><TR><TD ALIGN="LEFT">statut</TD></TR><TR><TD ALIGN="LEFT">observations</TD></TR></TABLE>>];
+  "administrateurs" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#3F7D2E" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E3F2DD"><TR><TD BGCOLOR="#3F7D2E"><FONT COLOR="white"><B>ADMINISTRATEUR</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">matricule</TD></TR><TR><TD ALIGN="LEFT">fonction</TD></TR><TR><TD ALIGN="LEFT">statut</TD></TR></TABLE>>];
+  "users" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#3F7D2E" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#E3F2DD"><TR><TD BGCOLOR="#3F7D2E"><FONT COLOR="white"><B>USER</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">name</TD></TR><TR><TD ALIGN="LEFT">email</TD></TR><TR><TD ALIGN="LEFT">password</TD></TR><TR><TD ALIGN="LEFT"><I><FONT COLOR="#666666">… autres propriétés à confirmer</FONT></I></TD></TR></TABLE>>];
+  "promotions" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", fontsize=11, label=<<B>PROMOTION</B>>];
+  as0 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>ETRE_ETUDIANT</B></TD></TR></TABLE>>];
+  "personnes" -> as0 [dir=none, taillabel="0,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as0 -> "etudiants" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as1 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>ETRE_PROFESSEUR</B></TD></TR></TABLE>>];
+  "personnes" -> as1 [dir=none, taillabel="0,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as1 -> "professeurs" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as2 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>ETRE_ADMINISTRATEUR</B></TD></TR></TABLE>>];
+  "personnes" -> as2 [dir=none, taillabel="0,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as2 -> "administrateurs" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as3 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>POSSEDER_COMPTE</B></TD></TR></TABLE>>];
+  "administrateurs" -> as3 [dir=none, taillabel="0,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as3 -> "users" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as4 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>APPARTENIR_PROMOTION</B></TD></TR></TABLE>>];
+  "promotions" -> as4 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as4 -> "etudiants" [dir=none, headlabel="0,1", labeldistance=1.8, labelangle=20, fontsize=10];
+}

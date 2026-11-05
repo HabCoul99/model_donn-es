@@ -1,0 +1,19 @@
+digraph G {
+ graph [rankdir=LR, fontname="DejaVu Sans", fontsize=18, labelloc=t, label=<<B>MLD 08 — Sécurité et modules</B>>, pad=0.3, nodesep=0.35, ranksep=0.7, splines=true, ];
+ node  [fontname="DejaVu Sans", fontsize=10, shape=plaintext];
+ edge  [fontname="DejaVu Sans", fontsize=9, arrowsize=0.7];
+  "roles" [label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#E8E8E8"><TR><TD COLSPAN="2" BGCOLOR="#555555"><FONT COLOR="white"><B>roles</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "permissions" [label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#E8E8E8"><TR><TD COLSPAN="2" BGCOLOR="#555555"><FONT COLOR="white"><B>permissions</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "role_user" [label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#E8E8E8"><TR><TD COLSPAN="2" BGCOLOR="#555555"><FONT COLOR="white"><B>role_user</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="user_id"><B><U>#user_id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="role_id"><B><U>#role_id</U></B></TD><TD></TD></TR></TABLE>>];
+  "permission_role" [label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#E8E8E8"><TR><TD COLSPAN="2" BGCOLOR="#555555"><FONT COLOR="white"><B>permission_role</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="role_id"><B><U>#role_id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="permission_id"><B><U>#permission_id</U></B></TD><TD></TD></TR></TABLE>>];
+  "modules_plateforme" [label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#E8E8E8"><TR><TD COLSPAN="2" BGCOLOR="#555555"><FONT COLOR="white"><B>modules_plateforme</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "structure_modules" [label=<<TABLE BORDER="1" COLOR="#555555" CELLBORDER="0" CELLSPACING="0" CELLPADDING="2" BGCOLOR="#E8E8E8"><TR><TD COLSPAN="2" BGCOLOR="#555555"><FONT COLOR="white"><B>structure_modules</B></FONT></TD></TR><TR><TD ALIGN="LEFT" PORT="id"><B><U>id</U></B></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="structure_id"><I>#structure_id</I></TD><TD></TD></TR><TR><TD ALIGN="LEFT" PORT="module_plateforme_id"><I>#module_plateforme_id</I></TD><TD></TD></TR><TR><TD COLSPAN="2" ALIGN="LEFT"><I><FONT COLOR="#666666">… colonnes à compléter</FONT></I></TD></TR></TABLE>>];
+  "structures" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", label=<<B>structures</B>>];
+  "users" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", label=<<B>users</B>>];
+  "role_user":"user_id" -> "users" [style=solid, color="#555555"];
+  "role_user":"role_id" -> "roles":id [style=solid, color="#555555"];
+  "permission_role":"role_id" -> "roles":id [style=solid, color="#555555"];
+  "permission_role":"permission_id" -> "permissions":id [style=solid, color="#555555"];
+  "structure_modules":"structure_id" -> "structures" [style=solid, color="#555555"];
+  "structure_modules":"module_plateforme_id" -> "modules_plateforme":id [style=solid, color="#555555"];
+}

@@ -1,0 +1,33 @@
+digraph G {
+ graph [rankdir=TB, fontname="DejaVu Sans", fontsize=18, labelloc=t, label=<<B>MCD 01 — Administration et organisation</B>>, pad=0.3, nodesep=0.35, ranksep=0.7, splines=true, ];
+ node  [fontname="DejaVu Sans", fontsize=10, shape=plaintext];
+ edge  [fontname="DejaVu Sans", fontsize=9, arrowsize=0.7];
+  "types_structures" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#2F5D8C" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#DCE9F7"><TR><TD BGCOLOR="#2F5D8C"><FONT COLOR="white"><B>TYPE_STRUCTURE</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">code</TD></TR><TR><TD ALIGN="LEFT">libelle</TD></TR><TR><TD ALIGN="LEFT">description</TD></TR><TR><TD ALIGN="LEFT">actif</TD></TR></TABLE>>];
+  "structures" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#2F5D8C" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#DCE9F7"><TR><TD BGCOLOR="#2F5D8C"><FONT COLOR="white"><B>STRUCTURE</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">code</TD></TR><TR><TD ALIGN="LEFT">nom</TD></TR><TR><TD ALIGN="LEFT">description</TD></TR><TR><TD ALIGN="LEFT">actif</TD></TR><TR><TD ALIGN="LEFT">archivee</TD></TR></TABLE>>];
+  "departements" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#2F5D8C" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#DCE9F7"><TR><TD BGCOLOR="#2F5D8C"><FONT COLOR="white"><B>DEPARTEMENT</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">code</TD></TR><TR><TD ALIGN="LEFT">nom</TD></TR><TR><TD ALIGN="LEFT">description</TD></TR><TR><TD ALIGN="LEFT">est_actif</TD></TR></TABLE>>];
+  "postes" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#2F5D8C" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#DCE9F7"><TR><TD BGCOLOR="#2F5D8C"><FONT COLOR="white"><B>POSTE</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">code</TD></TR><TR><TD ALIGN="LEFT">libelle</TD></TR><TR><TD ALIGN="LEFT">description</TD></TR><TR><TD ALIGN="LEFT">actif</TD></TR></TABLE>>];
+  "postes_structures" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#2F5D8C" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#DCE9F7"><TR><TD BGCOLOR="#2F5D8C"><FONT COLOR="white"><B>POSTE_STRUCTURE</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">description</TD></TR><TR><TD ALIGN="LEFT">actif</TD></TR></TABLE>>];
+  "affectations_postes" [shape=plaintext, label=<<TABLE BORDER="1" COLOR="#2F5D8C" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" BGCOLOR="#DCE9F7"><TR><TD BGCOLOR="#2F5D8C"><FONT COLOR="white"><B>AFFECTATION_POSTE</B></FONT></TD></TR><TR><TD ALIGN="LEFT"><U>id</U></TD></TR><HR/><TR><TD ALIGN="LEFT">date_debut</TD></TR><TR><TD ALIGN="LEFT">date_fin</TD></TR><TR><TD ALIGN="LEFT">motif</TD></TR></TABLE>>];
+  "personnes" [shape=box, style="rounded,filled", fillcolor="#F2F2F2", color="#999999", fontsize=11, label=<<B>PERSONNE</B>>];
+  as0 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>CLASSER</B></TD></TR></TABLE>>];
+  "types_structures" -> as0 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as0 -> "structures" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as1 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>CONTENIR</B></TD></TR></TABLE>>];
+  "structures" -> as1 [dir=none, taillabel="0,N (parent)", labeldistance=3.5, labelangle=-60, fontsize=8];
+  as1 -> "structures" [dir=none, headlabel="0,1 (enfant)", labeldistance=3.5, labelangle=60, fontsize=8];
+  as2 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>COMPRENDRE</B></TD></TR></TABLE>>];
+  "structures" -> as2 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as2 -> "departements" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as3 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>OFFRIR_POSTE</B></TD></TR></TABLE>>];
+  "structures" -> as3 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as3 -> "postes_structures" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as4 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>DEFINIR</B></TD></TR></TABLE>>];
+  "postes" -> as4 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as4 -> "postes_structures" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as5 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>OCCUPER</B></TD></TR></TABLE>>];
+  "postes_structures" -> as5 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as5 -> "affectations_postes" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+  as6 [shape=plaintext, label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="3" STYLE="rounded" BGCOLOR="white"><TR><TD><B>DETENIR</B></TD></TR></TABLE>>];
+  "personnes" -> as6 [dir=none, taillabel="0,N", labeldistance=1.8, labelangle=20, fontsize=10];
+  as6 -> "affectations_postes" [dir=none, headlabel="1,1", labeldistance=1.8, labelangle=20, fontsize=10];
+}
